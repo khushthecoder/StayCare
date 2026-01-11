@@ -12,6 +12,7 @@ const getComments = async (req, res) => {
             },
             orderBy: { createdAt: 'desc' }
         });
+        console.log("Fetched Comments:", JSON.stringify(comments, null, 2));
         res.json(comments);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -46,4 +47,17 @@ const likeComment = async (req, res) => {
     }
 };
 
-module.exports = { getComments, postComment, likeComment };
+const dislikeComment = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const comment = await prisma.foodComment.update({
+            where: { id: parseInt(id) },
+            data: { dislikes: { increment: 1 } }
+        });
+        res.json(comment);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+module.exports = { getComments, postComment, likeComment, dislikeComment };
