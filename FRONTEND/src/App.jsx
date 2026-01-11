@@ -22,7 +22,7 @@ function App() {
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
         <div>
           <h1 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '0.2rem', background: 'linear-gradient(to right, #6366f1, #22d3ee)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            HostelPulse
+            StayCare
           </h1>
           <p style={{ color: '#94a3b8' }}>Welcome, {user.name} ({user.role})</p>
         </div>
