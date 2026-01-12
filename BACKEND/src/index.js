@@ -15,12 +15,12 @@ app.use((req, res, next) => {
 });
 
 const authController = require('./controllers/auth');
+const healthController = require('./controllers/health');
 
 app.post('/api/signup', authController.signup);
 app.post('/api/login', authController.login);
 app.post('/api/google-login', authController.googleLogin);
-
-app.get('/api/health', (req, res) => res.json({ status: 'Live', origin: req.headers.origin }));
+app.get('/api/health', healthController.checkHealth);
 
 app.use('/api', foodRoutes);
 app.use('/api', complaintRoutes);
