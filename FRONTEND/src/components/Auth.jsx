@@ -21,7 +21,7 @@ const Auth = ({ onLogin }) => {
     useEffect(() => {
         if (typeof google !== 'undefined' && !window.googleInitialized) {
             google.accounts.id.initialize({
-                client_id: "912684332872-oj82fg2if3n4hb021gv01ckrfdft6805.apps.googleusercontent.com",
+                client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
                 callback: handleGoogleCallback,
                 ux_mode: "popup"
             });
