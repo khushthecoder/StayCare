@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-const API_URL = 'http://localhost:5001/api/food-comments';
+const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5001/api') + '/food-comments';
 
 function FoodBoard({ user }) {
     const [comments, setComments] = useState([]);
