@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-const API_URL = 'http://localhost:5001/food-comments';
+const API_URL = 'http://localhost:5001/api/food-comments';
 
 function FoodBoard({ user }) {
     const [comments, setComments] = useState([]);
@@ -46,6 +46,15 @@ function FoodBoard({ user }) {
         }
     };
 
+    const handleDislike = async (id) => {
+        try {
+            await axios.patch(`${API_URL}/${id}/dislike`);
+            fetchComments();
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
     return (
         <div className="animate-fade-in">
             {user.role === 'STUDENT' && (
@@ -75,14 +84,22 @@ function FoodBoard({ user }) {
                     comments.map(c => (
                         <div key={c.id} className="card" style={{ marginBottom: 0, padding: '1rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <p>{c.text}</p>
-                            <button
-                                className="btn btn-outline"
-                                style={{ padding: '0.4rem 0.8rem', fontSize: '0.875rem' }}
-                                onClick={() => handleLike(c.id)}
-                            >
-                                LIKE
-                                {c.likes}
-                            </button>
+                            <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                <button
+                                    className="btn btn-outline"
+                                    style={{ padding: '0.4rem 0.8rem', fontSize: '0.875rem', borderColor: '#6366f1', color: '#6366f1' }}
+                                    onClick={() => handleLike(c.id)}
+                                >
+                                    LIKE {c.likes}
+                                </button>
+                                <button
+                                    className="btn btn-outline"
+                                    style={{ padding: '0.4rem 0.8rem', fontSize: '0.875rem', borderColor: '#fb7185', color: '#fb7185' }}
+                                    onClick={() => handleDislike(c.id)}
+                                >
+                                    DISLIKE {c.dislikes ?? 0}
+                                </button>
+                            </div>
                         </div>
                     ))
                 )}

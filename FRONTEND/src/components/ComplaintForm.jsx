@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-// import { PenTool, Home, Info, CheckCircle } from 'lucide-react';
 
-const API_URL = 'http://localhost:5001/complaints';
+const API_URL = 'http://localhost:5001/api/complaints';
 
 function ComplaintForm({ user }) {
     const [formData, setFormData] = useState({
@@ -35,13 +34,11 @@ function ComplaintForm({ user }) {
     return (
         <div className="card">
             <h3 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                {/* <PenTool size={20} /> */}
                 Log a Complaint
             </h3>
 
             {submitted ? (
                 <div style={{ textAlign: 'center', padding: '2rem', color: '#10b981' }}>
-                    {/* <CheckCircle size={48} style={{ marginBottom: '1rem' }} /> */}
                     <p>Complaint logged successfully!</p>
                 </div>
             ) : (

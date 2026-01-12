@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-const API_URL = 'http://localhost:5001/complaints';
+const API_URL = 'http://localhost:5001/api/complaints';
 
 function WardenView({ user }) {
     const [complaints, setComplaints] = useState([]);
